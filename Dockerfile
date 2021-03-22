@@ -17,7 +17,7 @@ LABEL   author="sub1to software" maintainer="sub1to"
 RUN     apk add --no-cache --update curl ca-certificates openssl git tar bash sqlite fontconfig \
 
          # Chrome dependencies
-         && wget gnupg procps libxss1
+         && wget gnupg procps libxss1 \
 
          # Add pterodactyl user 'container'
          && adduser -D -h /home/container container
