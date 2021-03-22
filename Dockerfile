@@ -1,10 +1,10 @@
 # ----------------------------------
 # Pterodactyl Core Dockerfile
-# Environment: glibc
+# Environment: nodejs (glibc support)
 # Minimum Panel Version: 1.3.1
 # ----------------------------------
 
-FROM    openjdk:17-jdk-alpine
+FROM    node:current-alpine3.13
 
 LABEL   author="sub1to software" maintainer="sub1to"
 
