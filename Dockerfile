@@ -31,13 +31,9 @@ RUN     apt-get update \
          # Add pterodactyl user 'container'
          && adduser -D -h /home/container container
 
-        # Install Puppeteer under /node_modules so it's available system-wide
-ADD     package.json package-lock.json /
-RUN     npm install
-
 USER    container
 ENV     USER=container HOME=/home/container
 WORKDIR /home/container
 
-COPY ./entrypoint.sh /entrypoint.sh
-CMD ["/bin/bash", "/entrypoint.sh"]
+COPY    ./entrypoint.sh /entrypoint.sh
+CMD     ["/bin/bash", "/entrypoint.sh"]
