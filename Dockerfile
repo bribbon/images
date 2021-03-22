@@ -4,7 +4,7 @@
 # Minimum Panel Version: 1.3.X
 # ------------------------------------
 
-FROM    quay.io/parkervcp/pterodactyl-images:base_ubuntu
+FROM    sub1to/images:ubuntu_source
 
 LABEL   author="sub1to software" maintainer="sub1to"
 
