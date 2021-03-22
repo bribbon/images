@@ -33,7 +33,7 @@ RUN     apk add --no-cache --update curl ca-certificates openssl git tar bash sq
          && chmod +x /usr/sbin/wait-for-it.sh \
 
          # Add pterodactyl user 'container'
-         && adduser --disabled-password --home /home/container container
+         && adduser -D -h /home/container container
 
         # Install Puppeteer under /node_modules so it's available system-wide
 ADD     package.json package-lock.json /
