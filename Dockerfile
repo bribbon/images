@@ -4,7 +4,7 @@
 # Minimum Panel Version: 1.3.X
 # ------------------------------------
 
-FROM    sub1to/images:ubuntu_source
+FROM    sub1to/images:base_ubuntu
 
 LABEL   author="sub1to software" maintainer="sub1to"
 
