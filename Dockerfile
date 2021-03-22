@@ -36,8 +36,6 @@ RUN     apk add --no-cache --update libc6-compat ffmpeg git \
          && rm -rf /var/cache/* \
          && mkdir /var/cache/apk
 
-COPY    local.conf /etc/fonts/local.conf
-
         # Add Chrome as a user
 RUN     mkdir -p /home/container \
          && adduser -D container \
