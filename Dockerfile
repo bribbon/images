@@ -1,6 +1,6 @@
 # ------------------------------------
 # Pterodactyl Panel Docker Container
-# Environment: ubuntu 18.04
+# Environment: ubuntu
 # Minimum Panel Version: 1.3.X
 # ------------------------------------
 
