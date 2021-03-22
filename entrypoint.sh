@@ -5,8 +5,10 @@ cd /home/container
 export INTERNAL_IP=`ip route get 1 | awk '{print $NF;exit}'`
 
 # Output Current npm & node Versions
-npm -v
-node -v
+npm -Versions
+node -Versions
+puppeteer -Versions
+chromium -Versions
 
 # Replace Startup Variables
 MODIFIED_STARTUP=$(echo -e ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')

@@ -4,7 +4,9 @@
 # Minimum Panel Version: 1.3.1
 # ----------------------------------
 
-FROM    node:current-alpine3.13
+FROM    alpine:latest
+
+ARG     BUILD_DATE
 
 LABEL   author="sub1to software" maintainer="sub1to"
 
@@ -16,18 +18,33 @@ LABEL   author="sub1to software" maintainer="sub1to"
         # Pterodactyl dependencies
 RUN     apk add --no-cache --update libc6-compat ffmpeg git \
 
-         # Installs latest Chromium (89) package.
-         && chromium \
-         && nss \
-         && freetype \
-         && freetype-dev \
-         && harfbuzz \
-         && ca-certificates \
-         && ttf-freefont \
-         && nodejs \
-         && yarn \
-         # Add pterodactyl user 'container'
-         && adduser -D -h /home/container container
+         # Installs latest Chromium package.
+         && echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories \
+         && echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
+         && echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+         && echo "http://dl-cdn.alpinelinux.org/alpine/v3.12/main" >> /etc/apk/repositories \
+         && apk upgrade -U -a \
+         && apk add \
+         libstdc++ \
+         chromium \
+         harfbuzz \
+         nss \
+         freetype \
+         ttf-freefont \
+         font-noto-emoji \
+         wqy-zenhei \
+         && rm -rf /var/cache/* \
+         && mkdir /var/cache/apk
+
+COPY    local.conf /etc/fonts/local.conf
+
+        # Add Chrome as a user
+RUN     mkdir -p /home/container \
+         && adduser -D container \
+         && chown -R container:container /home/container
+
+ENV     CHROME_BIN=/usr/bin/chromium-browser \
+        CHROME_PATH=/usr/lib/chromium/
 
         # Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
 ENV     PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
@@ -37,9 +54,11 @@ ENV     PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 ADD     package.json package-lock.json /
 RUN     npm install
 
+        # Run Chrome as non-privileged
 USER    container
 ENV     USER=container HOME=/home/container
 WORKDIR /home/container
 
-COPY ./entrypoint.sh /entrypoint.sh
-CMD ["/bin/bash", "/entrypoint.sh"]
+COPY    ./entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["chromium-browser", "--headless", "--use-gl=swiftshader", "--disable-software-rasterizer", "--disable-dev-shm-usage"]
+CMD     ["/bin/bash", "/entrypoint.sh"]
