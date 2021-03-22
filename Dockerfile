@@ -4,7 +4,7 @@
 # Minimum Panel Version: 1.3.1
 # ----------------------------------
 
-FROM    frolvlad/alpine-glibc
+FROM    frolvlad/alpine-glibc:latest
 
 LABEL   author="sub1to software" maintainer="sub1to"
 
