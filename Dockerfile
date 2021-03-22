@@ -54,5 +54,4 @@ ENV     USER=container HOME=/home/container
 WORKDIR /home/container
 
 COPY    ./entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["chromium-browser", "--headless", "--use-gl=swiftshader", "--disable-software-rasterizer", "--disable-dev-shm-usage"]
 CMD     ["/bin/bash", "/entrypoint.sh"]
