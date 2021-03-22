@@ -48,10 +48,6 @@ ENV     CHROME_BIN=/usr/bin/chromium-browser \
 ENV     PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
         PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
-        # Install Puppeteer under /node_modules so it's available system-wide
-ADD     package.json package-lock.json /
-RUN     npm install
-
         # Run Chrome as non-privileged
 USER    container
 ENV     USER=container HOME=/home/container
