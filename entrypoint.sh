@@ -4,11 +4,8 @@ cd /home/container
 # Make internal Docker IP address available to processes.
 export INTERNAL_IP=`ip route get 1 | awk '{print $NF;exit}'`
 
-# Output Current npm & node Versions
+# Output Current npm Version
 npm -Versions
-node -Versions
-puppeteer -Versions
-chromium -Versions
 
 # Replace Startup Variables
 MODIFIED_STARTUP=$(echo -e ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
