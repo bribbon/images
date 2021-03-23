@@ -7,8 +7,7 @@ echo ":/home/container$ ${MODIFIED_STARTUP}"
 
 # display nodejs version on dockerstart
 \n
-echo -e "${node -v} \033[46mmagneta\033[0m"
-node -v
+echo -e "Node: \033[46m${node -v}\033[0m"
 \n
 
 # Run the Server
