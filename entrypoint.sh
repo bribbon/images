@@ -1,6 +1,5 @@
 #!/bin/bash
 cd /home/container
-node -v
 # Make internal Docker IP address available to processes.
 export INTERNAL_IP=`ip route get 1 | awk '{print $NF;exit}'`
 # Replace Startup Variables

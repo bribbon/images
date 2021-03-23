@@ -29,10 +29,8 @@ RUN     apt-get update \
          && chmod +x /usr/sbin/wait-for-it.sh \
 
          # Add pterodactyl user 'container'
-         && adduser -D -h /home/container container \
-
-         && npm update
-
+         && adduser -D -h /home/container container
+         
 USER    container
 ENV     USER=container HOME=/home/container
 WORKDIR /home/container
