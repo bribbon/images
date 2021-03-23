@@ -7,7 +7,7 @@ echo ":/home/container$ ${MODIFIED_STARTUP}"
 
 # Display noDejs version on dockerstart
 echo " "
-echo -e "Node: \033[46mnode -v\033[0m"
+node -v
 echo " "
 
 # Run the Server
