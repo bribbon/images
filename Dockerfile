@@ -8,16 +8,13 @@ FROM    node:15.12.0-buster-slim
 
 LABEL   author="sub1to software" maintainer="sub1to"
 
-RUN     apt-get purge nodejs npm \
-         && apt-get install -y nodejs npm
-
         # A minimal Docker image with Node and Puppeteer
         #
         # Initially based upon:
         # https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-in-docker
 
 RUN     apt-get update \
-         && apt-get install -y wget gnupg ca-certificates procps libxss1 git build-essential checkinstall libssl-dev \
+         && apt-get install -y wget gnupg ca-certificates procps libxss1 git build-essential checkinstall libssl-dev nodejs \
          && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
          && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
          && apt-get update \
