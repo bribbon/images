@@ -4,7 +4,7 @@
 # Minimum Panel Version: 1.3.X
 # ------------------------------------
 
-FROM    node:15.12.0-buster-slim@sha256:a2d9d913dd2a3078548f9444adca8316d4e95018fd496e444dd5b7c247d00ee4
+FROM    node:15.12.0-buster-slim@sha256:fe0ed67ef919170ccc3df25a9e80d20c16398a1d8498f82dacc2dc8640e78f53
 
 LABEL   author="sub1to software" maintainer="sub1to"
 
