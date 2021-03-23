@@ -8,8 +8,8 @@ FROM    node:14.16.0-buster-slim@sha256:ffc15488e56d99dbc9b90d496aaf47901c6a940c
 
 LABEL   author="sub1to software" maintainer="sub1to"
 
-RUN     apt update \
-        && apt -y install wget gnupg ca-certificates procps libxss1 git build-essential python3 \
+RUN     apt-get update \
+        && apt-get -y install wget gnupg ca-certificates procps libxss1 git build-essential python3 \
         && useradd -m -d /home/container container
 
 USER    container
