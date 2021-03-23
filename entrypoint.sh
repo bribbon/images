@@ -7,6 +7,7 @@ echo ":/home/container$ ${MODIFIED_STARTUP}"
 
 # Display noDejs version on dockerstart
 echo " "
+echo "Node:$ -e "node -v" installed"
 node -v
 echo " "
 
