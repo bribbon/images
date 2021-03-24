@@ -13,10 +13,6 @@ LABEL   author="sub1to software" maintainer="sub1to"
         # Initially based upon:
         # https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-in-docker
 
-        # nodejs debian dependencies
-RUN     apt-get update \
-         && libatomic1 libbrotli libc-ares2 libc6 libgcc1 libicu63 libnode64 libssl1.1 libstdc++6 libuv1 zlib1g npm
-
 RUN     apt-get update \
          && apt-get install -y wget gnupg ca-certificates procps libxss1 git build-essential libssl-dev \
          && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
