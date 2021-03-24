@@ -4,7 +4,7 @@
 # Minimum Panel Version: 1.3.X
 # ------------------------------------
 
-FROM    node:15.12.0-buster-slim
+FROM    node:14.16.0-buster-slim@sha256:ffc15488e56d99dbc9b90d496aaf47901c6a940c077bc542f675ae351e769a12
 
 LABEL   author="sub1to software" maintainer="sub1to"
 
@@ -12,6 +12,10 @@ LABEL   author="sub1to software" maintainer="sub1to"
         #
         # Initially based upon:
         # https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-in-docker
+
+        # nodejs debian dependencies
+RUN     apt-get update \
+         && libatomic1 libbrotli libc-ares2 libc6 libgcc1 libicu63 libnode64 libssl1.1 libstdc++6 libuv1 zlib1g npm
 
 RUN     apt-get update \
          && apt-get install -y wget gnupg ca-certificates procps libxss1 git build-essential libssl-dev \
