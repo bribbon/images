@@ -14,7 +14,7 @@ LABEL   author="sub1to software" maintainer="sub1to"
         # https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-in-docker
 
 RUN     apt-get update \
-         && apt-get install -y wget gnupg ca-certificates procps libxss1 git build-essential \
+         && apt-get install -y wget gnupg ca-certificates procps libxss1 git autoconf automake g++ libtool build-essential \
          && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
          && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
          && apt-get update \
