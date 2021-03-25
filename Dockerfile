@@ -4,12 +4,14 @@
 # Minimum Panel Version: 1.3.X
 # ------------------------------------
 
-FROM    ubuntu:18.04
+FROM    node:14-buster
 
 LABEL   author="sub1to software" maintainer="sub1to"
 
-ENV     DEBIAN_FRONTEND=noninteractive
+        # Ignore APT warnings about not having a TTY
+ENV     DEBIAN_FRONTEND noninteractive
 
+        # Install OS deps
 RUN     apt-get update \
          && apt-get dist-upgrade -y \
          && apt-get autoremove -y \
@@ -21,20 +23,15 @@ RUN     apt-get update \
          && adduser -D -h /home/container container
 
         # Ensure UTF-8
-RUN     locale-gen en_US.UTF-8
+RUN     sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen \
+         && locale-gen
+    
 ENV     LANG en_US.UTF-8
 ENV     LC_ALL en_US.UTF-8
-ENV     TZ=UTC
-RUN     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-        # Nodejs & discord.js
-RUN     curl -sL https://deb.nodesource.com/setup_10.x | bash - \
-         && apt update \
-         && apt -y upgrade \
-         && apt -y install nodejs node-gyp \
-         && npm install discord.js \
+        # Install NodeJS Dependencies
+RUN     npm install discord.js \
          && npm install @discordjs/opus \
-         && npm install node-opus \
          && npm install opusscript \
          && npm install bufferutil \
          && npm install libsodium-wrappers \
@@ -45,9 +42,10 @@ RUN     curl -sL https://deb.nodesource.com/setup_10.x | bash - \
          && npm install sodium
 
 USER    container
-ENV     USER container
-ENV     HOME /home/container
+ENV     USER=container HOME=/home/container
+
 WORKDIR /home/container
 
 COPY    ./entrypoint.sh /entrypoint.sh
+
 CMD     ["/bin/bash", "/entrypoint.sh"]
